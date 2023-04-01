@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    let isMount = true
+
+    /**
+     * fiber
+     * memoizedState 用来保存state 的数据
+     * stateNode App 函数返回的结果
+     */
+    const fiber = {
+      memoizedState: null,
+      stateNode: App,
+    }
+
+    function run() {
+      const app = fiber.stateNode()
+      isMount = false
+    }
+
+    function App() {
+      const [num, setNum] = useState(0)
+      return {
+        onClick() {
+          setNum(num + 1)
+        },
+      }
+    }
+  </script>
+</html>

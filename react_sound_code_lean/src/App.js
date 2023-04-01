@@ -1,13 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-
+import logo from './logo.svg'
+import './App.css'
+import { useState } from 'react'
 function App() {
+  const [num, setNum] = useState(0)
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+        <p onClick={() => setNum(num + 1)}>
+          Edit <code>{num}</code> and save to reload.
         </p>
         <a
           className="App-link"
@@ -19,7 +20,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
