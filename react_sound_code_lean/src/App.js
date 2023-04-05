@@ -1,26 +1,33 @@
-import logo from './logo.svg'
-import './App.css'
-import { useState } from 'react'
-function App() {
-  const [num, setNum] = useState(0)
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
+import Home from './pages/Home'
+import Form from './pages/Form'
+import { KeepAlive, KeepAliveTrafer } from './KeepAlive'
+const KeepAliveHome = KeepAliveTrafer(Home, 'home')
+const KeepAliveForm = KeepAliveTrafer(Form, 'form')
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p onClick={() => setNum(num + 1)}>
-          Edit <code>{num}</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <ul>
+          <li>
+            <Link to={'/'}>home</Link>
+          </li>
+          <li>
+            <Link to={'/form'} element={<Form />}>
+              form
+            </Link>
+          </li>
+        </ul>
+        <KeepAlive>
+          <div>
+            <Routes>
+              <Route path="/" element={<KeepAliveHome />}></Route>
+              <Route path="/form" element={<KeepAliveForm />}></Route>
+            </Routes>
+          </div>
+        </KeepAlive>
+      </BrowserRouter>
     </div>
   )
 }
-
 export default App
